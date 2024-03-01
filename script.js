@@ -3,8 +3,20 @@ var totalProdInp = document.querySelector(".total-prod");
 var folhasInp = document.querySelector("#mts-enf");
 
 var btn = document.querySelector(".btn");
+var clear = document.querySelector(".clear");
+
+
+var resultCol1 = document.querySelector(".result-col-1");
+var resultCol2 = document.querySelector(".result-col-2");
+
 
 btn.addEventListener("click", resultado);
+clear.addEventListener("click", limpar);
+
+function limpar(){
+    resultCol1.innerHTML = ``;
+    resultCol2.innerHTML = ``;
+}
 
 pcFolhaInp.addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
