@@ -1,7 +1,43 @@
+var pcFolhaInp = document.querySelector(".pç-folha");
+var totalProdInp = document.querySelector(".total-prod");
+var folhasInp = document.querySelector("#mts-enf");
 
 var btn = document.querySelector(".btn");
 
 btn.addEventListener("click", resultado);
+
+pcFolhaInp.addEventListener("keypress", function(event) {
+    // If the user presses the "Enter" key on the keyboard
+    if (event.key === "Enter") {
+      // Cancel the default action, if needed
+      event.preventDefault();
+      // Trigger the button element with a click
+      btn.click();
+    }
+  });
+
+
+  totalProdInp.addEventListener("keypress", function(event) {
+    // If the user presses the "Enter" key on the keyboard
+    if (event.key === "Enter") {
+      // Cancel the default action, if needed
+      event.preventDefault();
+      // Trigger the button element with a click
+      btn.click();
+    }
+  });
+
+  folhasInp.addEventListener("keypress", function(event) {
+    // If the user presses the "Enter" key on the keyboard
+    if (event.key === "Enter") {
+      // Cancel the default action, if needed
+      event.preventDefault();
+      // Trigger the button element with a click
+      btn.click();
+    }
+  });
+
+
 
 function resultado(){
 var pcFolha = parseInt(document.querySelector(".pç-folha").value);
@@ -11,6 +47,12 @@ var mts = document.querySelector("#mts-enf").value;
 var resultCol1 = document.querySelector(".result-col-1");
 var resultCol2 = document.querySelector(".result-col-2");
 
+
+if(isNaN(pcFolha) || isNaN(totalProd) || mts == "" || pcFolha == 0 || totalProd == 0 || mts == "0" ){
+    resultCol1.innerHTML = `Insira os dados Corretamente.`
+    resultCol2.innerHTML = ``
+}
+else{
 function pontoVirg(mts){
     const repVirg = mts.replace(",",".");
     return parseFloat(repVirg);
@@ -50,4 +92,4 @@ function pontoVirg(mts){
             resultCol2.innerHTML = `1 enfesto de ${SecResRound} folhas(${pontoVirg(mts)} MTS)`
         }
     }
-    };
+    }};

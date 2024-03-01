@@ -5,9 +5,10 @@
   <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Calculadora de Enfestos - Eco Brasil.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
   </head>
   <body>
     <section class="preencher">
@@ -29,11 +30,9 @@
       <div class="box">      
         <label class="title-preencher"> Quantidade de Folhas:</label>
         <select name="folhas" id="folhas">
-          <option value="" selected hidden></option>
           <option value="5">5 Folhas</option>
-          <option value="10">10 Folhas</option>
+          <option value="10" selected>10 Folhas</option>
           <option value="20">20 Folhas</option>
-          <option value="Outro">Outro</option>
         </select>
       </div>
 
