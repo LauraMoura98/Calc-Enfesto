@@ -1,0 +1,57 @@
+<!--index.html-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Calculadora de Enfestos - Eco Brasil.</title>
+  </head>
+  <body>
+    <section class="preencher">
+      <div class="box">      
+        <label class="title-preencher"> Peças por folha:</label>
+        <input class="pç-folha resp-preencher" type="number" id="pç-folha" name="pç-folha" min="0" max="1000"/>
+      </div>
+      <div class="box"> 
+      <label class="title-preencher">Total da Produção:</label>
+      <input class="total-prod resp-preencher" type="number" id="total-prod" name="total-prod" min="0"/>
+    </div>
+    <div class="box"> 
+      <label class="title-preencher ">Metros por enfesto:</label>
+      <input class="mts-enf resp-preencher" type="text" id="mts-enf" name="mts-enf"/>
+    </div>
+    </section>
+
+    <section class="preencher-drop">
+      <div class="box">      
+        <label class="title-preencher"> Quantidade de Folhas:</label>
+        <select name="folhas" id="folhas">
+          <option value="" selected hidden></option>
+          <option value="5">5 Folhas</option>
+          <option value="10">10 Folhas</option>
+          <option value="20">20 Folhas</option>
+          <option value="Outro">Outro</option>
+        </select>
+      </div>
+
+    </section>
+  <div class="btn-box">
+    <button class="btn">Calcular</button>
+  </div>
+    
+<section class="box-result">
+  <div class="div-result">
+  <p class="result-col-1 result"> </p>
+  <p class="result-col-2 result"> </p>
+</div>
+</section>
+<div class="div btn">
+  <button class="clear">Limpar</button>
+</div>
+    <script src="./renderer.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
