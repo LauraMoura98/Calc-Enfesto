@@ -62,7 +62,6 @@ var totalProd = parseInt(document.querySelector(".total-prod").value);
 var folhas = parseInt(document.querySelector("#folhas").value);
 var mts = document.querySelector("#mts-enf").value;
 var resultCol1 = document.querySelector(".result-col-1");
-var resultCol2 = document.querySelector(".result-col-2");
 
 
 if(isNaN(pcFolha) || isNaN(totalProd) || mts == "" || pcFolha == 0 || totalProd == 0 || mts == "0" ){
@@ -70,7 +69,6 @@ if(isNaN(pcFolha) || isNaN(totalProd) || mts == "" || pcFolha == 0 || totalProd 
     result.style.fontStyle = "italic"
     result.style.fontSize = ".8rem"
     resultCol1.innerHTML = `Insira os dados Corretamente.`
-    resultCol2.innerHTML = ``
 }
 else{
 
@@ -97,7 +95,6 @@ function pontoVirg(mts){
     if (totEnf < 1){ //Para Numeros com décimos 
         var umDec = totEnf * 10;
         resultCol1.innerHTML = `1 enfesto de ${umDec} folhas(${pontoVirg(mts)} MTS)`
-        resultCol2.innerHTML = ``
     } else{   //Para Numeros com centésimos 
 
     //Variável para extrair o primeiro valor da decimal
@@ -108,11 +105,26 @@ function pontoVirg(mts){
 
     if (SecResRound == 0){
         resultCol1.innerHTML = `${roundRes} enfestos de ${folhas} folhas(${pontoVirg(mts)} MTS)`;
-        resultCol2.innerHTML = ``
     }
         else{
-            resultCol1.innerHTML = `${roundRes} enfestos de ${folhas} folhas(${pontoVirg(mts)} MTS)`;
-            resultCol2.innerHTML = `1 enfesto de ${SecResRound} folhas(${pontoVirg(mts)} MTS)`
+            resultCol1.innerHTML = `${roundRes} enfestos de ${folhas} folhas (${pontoVirg(mts)} MTS) <br/><br/> 1 enfesto de ${SecResRound} folhas (${pontoVirg(mts)} MTS)`;
         }
     }
     }};
+
+    var iconCopy = document.querySelector(".icon");
+
+icon.addEventListener('click', function(e) {
+  var resultado = document.querySelector(".result-col-1").innerText;
+  var copyMessage = document.querySelector(".copy-message");
+
+
+  navigator.clipboard.writeText(resultado).then(() => {
+    copyMessage.innerHTML = `Copiado com Sucesso!`
+
+    setTimeout(() =>{
+      copyMessage.innerHTML = ``
+    },3000);
+  })
+
+    });
