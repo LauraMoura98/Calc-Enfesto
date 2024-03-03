@@ -8,10 +8,24 @@ var clear = document.querySelector(".clear");
 
 var resultCol1 = document.querySelector(".result-col-1");
 var resultCol2 = document.querySelector(".result-col-2");
+var result = document.querySelector(".result")
 
+var popup = document.querySelector(".popup");
+var icon = document.querySelector(".icon");
 
 btn.addEventListener("click", resultado);
 clear.addEventListener("click", limpar);
+
+icon.addEventListener("mouseover", (event) => {
+  popup.style.opacity= `100%`
+  
+});
+
+icon.addEventListener("mouseout", (event) => {
+  popup.style.opacity= `0`
+  
+});
+
 
 function limpar(){
     resultCol1.innerHTML = ``;
@@ -52,10 +66,16 @@ var resultCol2 = document.querySelector(".result-col-2");
 
 
 if(isNaN(pcFolha) || isNaN(totalProd) || mts == "" || pcFolha == 0 || totalProd == 0 || mts == "0" ){
+    result.style.color = "red"
+    result.style.fontStyle = "italic"
+    result.style.fontSize = ".8rem"
     resultCol1.innerHTML = `Insira os dados Corretamente.`
     resultCol2.innerHTML = ``
 }
 else{
+
+result.removeAttribute("style")
+
 function pontoVirg(mts){
     const repVirg = mts.replace(",",".");
     return parseFloat(repVirg);
