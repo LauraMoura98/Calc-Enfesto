@@ -9,6 +9,7 @@ var clear = document.querySelector(".clear");
 var resultCol1 = document.querySelector(".result-col-1");
 var resultCol2 = document.querySelector(".result-col-2");
 var result = document.querySelector(".result")
+var totalMts = document.querySelector(".total-mts");
 
 var popup = document.querySelector(".popup");
 var icon = document.querySelector(".icon");
@@ -26,10 +27,19 @@ icon.addEventListener("mouseout", (event) => {
   
 });
 
+folhasInp.oninput = function(){
+  var removeChar = this.value.replace(/[^0-9\.]/g, '') 
+  var removeDot = removeChar.replace(/\./g, '')
+  this.value = removeDot
+
+  var formatedNumber = this.value.replace(/\B(?=(\d{2})+(?!\d))/g, ",")
+  this.value = formatedNumber
+  
+}
 
 function limpar(){
     resultCol1.innerHTML = ``;
-    resultCol2.innerHTML = ``;
+    totalMts.innerHTML = ``
 }
 
 pcFolhaInp.addEventListener("keypress", function(event) {
@@ -62,16 +72,22 @@ var totalProd = parseInt(document.querySelector(".total-prod").value);
 var folhas = parseInt(document.querySelector("#folhas").value);
 var mts = document.querySelector("#mts-enf").value;
 var resultCol1 = document.querySelector(".result-col-1");
+var copyMessage = document.querySelector(".copy-message");
+var totalMts = document.querySelector(".total-mts");
 
 
 if(isNaN(pcFolha) || isNaN(totalProd) || mts == "" || pcFolha == 0 || totalProd == 0 || mts == "0" ){
-    result.style.color = "red"
-    result.style.fontStyle = "italic"
-    result.style.fontSize = ".8rem"
-    resultCol1.innerHTML = `Insira os dados Corretamente.`
+
+    copyMessage.style.color = "red"
+    copyMessage.style.fontWeight = "600"
+    copyMessage.style.opacity ="100%"
+    copyMessage.innerHTML = `Insira os dados Corretamente.`
+    resultCol1.innerHTML = ``
 }
 else{
 
+
+copyMessage.innerHTML = ``
 result.removeAttribute("style")
 
 function pontoVirg(mts){
@@ -95,6 +111,8 @@ function pontoVirg(mts){
     if (totEnf < 1){ //Para Numeros com décimos 
         var umDec = totEnf * 10;
         resultCol1.innerHTML = `1 enfesto de ${umDec} folhas(${pontoVirg(mts)} MTS)`
+        var mtsxenf = pontoVirg(mts) * umDec;
+        totalMts.innerHTML = `Total de Metros: ${Math.round(mtsxenf)}Mts`
     } else{   //Para Numeros com centésimos 
 
     //Variável para extrair o primeiro valor da decimal
@@ -105,9 +123,17 @@ function pontoVirg(mts){
 
     if (SecResRound == 0){
         resultCol1.innerHTML = `${roundRes} enfestos de ${folhas} folhas(${pontoVirg(mts)} MTS)`;
+        var mtsxfolhas = pontoVirg(mts) * folhas;
+        var mtsxenf = mtsxfolhas * roundRes;
+        totalMts.innerHTML = `Total de Metros: ${Math.round(mtsxenf)}Mts`
     }
         else{
             resultCol1.innerHTML = `${roundRes} enfestos de ${folhas} folhas (${pontoVirg(mts)} MTS) <br/><br/> 1 enfesto de ${SecResRound} folhas (${pontoVirg(mts)} MTS)`;
+            var mtsxfolhas1 = pontoVirg(mts) * folhas;
+            var mtsxenf1 = mtsxfolhas1 * roundRes;
+            var mtsxfolhas2 = pontoVirg(mts) * SecResRound;
+            var mtsxenftotal = mtsxfolhas2 + mtsxenf1;
+            totalMts.innerHTML = `Total de Metros: ${Math.round(mtsxenftotal)}Mts`
         }
     }
     }};
@@ -118,13 +144,19 @@ icon.addEventListener('click', function(e) {
   var resultado = document.querySelector(".result-col-1").innerText;
   var copyMessage = document.querySelector(".copy-message");
 
+  if (resultado == ""){
+  copyMessage.style.color = "red"
+  copyMessage.style.fontWeight = "600"
+  copyMessage.style.opacity= `100%`
+  copyMessage.innerHTML = `Insira os dados Corretamente.`
 
-  navigator.clipboard.writeText(resultado).then(() => {
-    copyMessage.innerHTML = `Copiado com Sucesso!`
-
-    setTimeout(() =>{
-      copyMessage.innerHTML = ``
-    },3000);
-  })
-
-    });
+    }else{
+      copyMessage.style.opacity= `100%`
+      navigator.clipboard.writeText(resultado).then(() => {
+        copyMessage.innerHTML = `Copiado com Sucesso!`
+    
+        setTimeout(() =>{
+          copyMessage.style.opacity= `0`
+        },2000);
+      })
+    }});

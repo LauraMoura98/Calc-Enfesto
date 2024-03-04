@@ -127,6 +127,8 @@ color: black;
     flex-direction: row;
     justify-content: space-between;
 }
-.copymts{
-    margin: 0;
+.copy-message{
+    margin: .2rem 0 0 0;
+    opacity: 0;
+    transition: opacity 0.1s ease-in;
 }
