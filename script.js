@@ -32,7 +32,7 @@ folhasInp.oninput = function(){
   var removeDot = removeChar.replace(/\./g, '')
   this.value = removeDot
 
-  var formatedNumber = this.value.replace(/\B(?=(\d{2})+(?!\d))/g, ",")
+  var formatedNumber = this.value.replace(/\B(?=(\d{2})+(?!\d))/g, ".")
   this.value = formatedNumber
   
 }
@@ -70,12 +70,13 @@ function resultado(){
 var pcFolha = parseInt(document.querySelector(".pç-folha").value);
 var totalProd = parseInt(document.querySelector(".total-prod").value);
 var folhas = parseInt(document.querySelector("#folhas").value);
-var mts = document.querySelector("#mts-enf").value;
+var mts = parseFloat(document.querySelector("#mts-enf").value);
 var resultCol1 = document.querySelector(".result-col-1");
 var copyMessage = document.querySelector(".copy-message");
 var totalMts = document.querySelector(".total-mts");
 
-
+var mts10 = mts + 0.10;
+var mts10fix = mts10.toFixed(2)
 if(isNaN(pcFolha) || isNaN(totalProd) || mts == "" || pcFolha == 0 || totalProd == 0 || mts == "0" ){
 
     copyMessage.style.color = "red"
@@ -90,10 +91,6 @@ else{
 copyMessage.innerHTML = ``
 result.removeAttribute("style")
 
-function pontoVirg(mts){
-    const repVirg = mts.replace(",",".");
-    return parseFloat(repVirg);
-}
 
 // Função para arredondar os valores para cima ou para baixo
     function arredondamento(totalProd) {
@@ -110,9 +107,9 @@ function pontoVirg(mts){
 
     if (totEnf < 1){ //Para Numeros com décimos 
         var umDec = totEnf * 10;
-        resultCol1.innerHTML = `1 enfesto de ${umDec} folhas(${pontoVirg(mts)} MTS)`
-        var mtsxenf = pontoVirg(mts) * umDec;
-        totalMts.innerHTML = `Total de Metros: ${Math.round(mtsxenf)}Mts`
+        resultCol1.innerHTML = `1 ENFESTO DE ${umDec} FOLHAS(${mts10fix}M)`
+        var mtsxenf = mts10 * umDec;
+        totalMts.innerHTML = `Total de Metros: ${Math.round(mtsxenf)}MTS`
     } else{   //Para Numeros com centésimos 
 
     //Variável para extrair o primeiro valor da decimal
@@ -122,18 +119,18 @@ function pontoVirg(mts){
     var SecResRound = Math.round(SecRes * 10);
 
     if (SecResRound == 0){
-        resultCol1.innerHTML = `${roundRes} enfestos de ${folhas} folhas(${pontoVirg(mts)} MTS)`;
-        var mtsxfolhas = pontoVirg(mts) * folhas;
+        resultCol1.innerHTML = `${roundRes} ENFESTOS DE ${folhas} FOLHAS(${mts10fix}M)`;
+        var mtsxfolhas = mts10 * folhas;
         var mtsxenf = mtsxfolhas * roundRes;
-        totalMts.innerHTML = `Total de Metros: ${Math.round(mtsxenf)}Mts`
+        totalMts.innerHTML = `Total de Metros: ${Math.round(mtsxenf)}MTS`
     }
         else{
-            resultCol1.innerHTML = `${roundRes} enfestos de ${folhas} folhas (${pontoVirg(mts)} MTS) <br/><br/> 1 enfesto de ${SecResRound} folhas (${pontoVirg(mts)} MTS)`;
-            var mtsxfolhas1 = pontoVirg(mts) * folhas;
+            resultCol1.innerHTML = `${roundRes} ENFESTOS DE ${folhas} FOLHAS (${mts10fix}M) <br/><br/> 1 ENFESTO DE ${SecResRound} FOLHAS (${mts10fix}M)`;
+            var mtsxfolhas1 = mts10 * folhas;
             var mtsxenf1 = mtsxfolhas1 * roundRes;
-            var mtsxfolhas2 = pontoVirg(mts) * SecResRound;
+            var mtsxfolhas2 = mts10 * SecResRound;
             var mtsxenftotal = mtsxfolhas2 + mtsxenf1;
-            totalMts.innerHTML = `Total de Metros: ${Math.round(mtsxenftotal)}Mts`
+            totalMts.innerHTML = `Total de Metros: ${Math.round(mtsxenftotal)}MTS`
         }
     }
     }};

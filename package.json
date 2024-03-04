@@ -1,14 +1,47 @@
+
+
 {
-  "name": "Calculadora de Enfesto Textil",
+  "name": "calculadora-enfesto",
   "version": "1.0.0",
   "description": "Calculo de Enfesto EcoBrasil",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\"",
+    "build-installer": "electron-builder",
+    "packager": "electron-packager ./ --platform=win32"
   },
+  "build": {
+    "appId": "cal-enfesto",
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "icon":"Calc-Enfesto/icon.ico"
+    }
+  },
+  "portable": {
+    "artifactName": "calculadora_enfesto.exe"
+},
   "author": "Laura Moura",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^29.1.0"
+    "@electron-forge/cli": "^7.3.0",
+    "@electron-forge/maker-deb": "^7.3.0",
+    "@electron-forge/maker-rpm": "^7.3.0",
+    "@electron-forge/maker-squirrel": "^7.3.0",
+    "@electron-forge/maker-zip": "^7.3.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.3.0",
+    "@electron-forge/plugin-fuses": "^7.3.0",
+    "@electron/fuses": "^1.7.0",
+    "electron": "^29.1.0",
+    "electron-builder": "^24.13.3",
+    "electron-packager": "^17.1.2"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
   }
 }
