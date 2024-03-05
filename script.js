@@ -39,7 +39,10 @@ folhasInp.oninput = function(){
 
 function limpar(){
     resultCol1.innerHTML = ``;
-    totalMts.innerHTML = ``
+    totalMts.innerHTML = ``;
+    document.querySelector(".pç-folha").value = '';
+    document.querySelector(".total-prod").value = '';
+    document.querySelector("#mts-enf").value = '';
 }
 
 pcFolhaInp.addEventListener("keypress", function(event) {
@@ -77,7 +80,7 @@ var totalMts = document.querySelector(".total-mts");
 
 var mts10 = mts + 0.10;
 var mts10fix = mts10.toFixed(2)
-if(isNaN(pcFolha) || isNaN(totalProd) || mts == "" || pcFolha == 0 || totalProd == 0 || mts == "0" ){
+if(isNaN(pcFolha) || isNaN(totalProd) || isNaN(mts) || mts == "" || pcFolha == 0 || totalProd == 0 || mts == "0" ){
 
     copyMessage.style.color = "red"
     copyMessage.style.fontWeight = "600"
