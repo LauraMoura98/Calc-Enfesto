@@ -1,33 +1,41 @@
-
-
 {
   "name": "calculadora-enfesto",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Calculo de Enfesto EcoBrasil",
   "main": "main.js",
+
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\"",
-    "build-installer": "electron-builder",
-    "packager": "electron-packager ./ --platform=win32"
+
+    "build": "electron-builder",
+    "build-win": "electron-builder --win",
+    "build-installer": "electron-builder --win --x64"
   },
+
   "build": {
     "appId": "cal-enfesto",
+    "productName": "Calculadora Enfesto",
+    "directories": {
+      "output": "dist"
+    },
     "win": {
       "target": [
-        "portable"
+        "nsis"
       ],
-      "icon":"Calc-Enfesto/icon.ico"
+      "icon": "Calc-Enfesto/icon.ico"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": false
     }
   },
-  "portable": {
-    "artifactName": "calculadora_enfesto.exe"
-},
+
   "author": "Laura Moura",
   "license": "MIT",
+
   "devDependencies": {
     "@electron-forge/cli": "^7.3.0",
     "@electron-forge/maker-deb": "^7.3.0",
@@ -37,10 +45,11 @@
     "@electron-forge/plugin-auto-unpack-natives": "^7.3.0",
     "@electron-forge/plugin-fuses": "^7.3.0",
     "@electron/fuses": "^1.7.0",
+
     "electron": "^29.1.0",
-    "electron-builder": "^24.13.3",
-    "electron-packager": "^17.1.2"
+    "electron-builder": "^24.13.3"
   },
+
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0"
   }
